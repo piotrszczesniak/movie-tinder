@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1and3011",
+    "imageURL": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTE2NTkzMV5BMl5BanBnXkFtZTgwMDAzOTUyMDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
+    "title": "Inferno",
+    "summary": "Lorem ipsum....",
+    "rating": 5.3
+  },
+  {
+    "id": "1and3012",
+    "imageURL": "https://a.allegroimg.com/original/11af9d/d67335814694bedc6d5ddbd0a1f3/MISSION-IMPOSSIBLE-2-DVD.jpg",
+    "title": "Mission Impossible",
+    "summary": "Lorem ipsum....",
+    "rating": 6.3
+  },
+  {
+    "id": "1and3013",
+    "imageURL": "https://s3.viva.pl/newsy/benny-hill-568754-GALLERY_600.jpg",
+    "title": "Benny Hill",
+    "summary": "Lorem ipsum....",
+    "rating": 5.3
+  },
+  {
+    "id": "1and3014",
+    "imageURL": "https://i.wpimg.pl/O/1080x1350/d.wpimg.pl/1341818980-660211334/men-in-black.jpg",
+    "title": "Men in black",
+    "summary": "Lorem ipsum....",
+    "rating": 5.3
+  },
+  {
+    "id": "1and3015",
+    "imageURL": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5721/5721929_so.jpg",
+    "title": "Dirty dancing",
+    "summary": "Lorem ipsum....",
+    "rating": 5.3
+  },
+  {
+    "id": "1and3016",
+    "imageURL": "https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/lord_of_the_rings_fellowship_of_the_ring_2000x3000.jpg",
+    "title": "Lords of the rings",
+    "summary": "Lorem ipsum....",
+    "rating": 5.3
+  },
+  {
+    "id": "2301abc",
+    "imageURL": "https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg",
+
+    "title": "Star Wars: Episode VII - The Force Awakens",
+    "summary": "Lorem ipsum....",
+    "rating": 8.2
+  }
+]
