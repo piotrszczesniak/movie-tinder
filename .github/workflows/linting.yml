@@ -26,4 +26,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           # Enable linters
           eslint: true
-          prettier: false
+          prettier: true
+
+      - name: Action Lint
+        uses: panda0603/lint-action@1.6.3
