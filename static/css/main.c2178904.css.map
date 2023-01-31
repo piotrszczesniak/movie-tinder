@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.c2178904.css","mappings":"AAAA,EACE,QACF,CAEA,KACE,iBACF","sources":["index.css"],"sourcesContent":["* {\n  margin: 0;\n}\n\nbody {\n  overflow-x: hidden;\n}\n"],"names":[],"sourceRoot":""}
