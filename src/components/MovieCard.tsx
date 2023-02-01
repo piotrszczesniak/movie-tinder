@@ -109,7 +109,7 @@ const MovieCard = () => {
     <Container data-testid='container-element' sx={{ p: 1 }} maxWidth='sm'>
       <ScopedCssBaseline>
         <Card
-          sx={{ boxShadow: 3 }}
+          sx={{ boxShadow: 3, maxHeight: '100vh' }}
           key={id}
           ref={cardRef}
           onTouchStart={handleTouchStart}
@@ -117,7 +117,7 @@ const MovieCard = () => {
             handleTouchEnd(e, id);
           }}
         >
-          <CardMedia sx={{ height: '75vh', backgroundPosition: 'center center' }} image={imageURL} title={title} />
+          <CardMedia sx={{ height: 600, backgroundPosition: 'center center' }} image={imageURL} title={title} />
           <CardContent>
             <Typography sx={{ textAlign: 'center' }} variant='h6' component='h3'>
               {title}
