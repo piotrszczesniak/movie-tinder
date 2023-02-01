@@ -79,12 +79,12 @@ const MovieCard = () => {
   }
 
   function checkDirection(id: string) {
-    if (touchEndX.current < touchStartX.current) {
+    if (touchEndX.current + 50 < touchStartX.current) {
       // swiped left -> accept
       handleAcceptClick(id);
     }
 
-    if (touchEndX.current > touchStartX.current) {
+    if (touchEndX.current > touchStartX.current + 50) {
       // swiped right -> reject
       handleRejectClick(id);
     }
@@ -109,7 +109,7 @@ const MovieCard = () => {
     <Container data-testid='container-element' sx={{ p: 1 }} maxWidth='sm'>
       <ScopedCssBaseline>
         <Card
-          sx={{ boxShadow: 3, maxHeight: '100vh' }}
+          sx={{ boxShadow: 3, height: '100%' }}
           key={id}
           ref={cardRef}
           onTouchStart={handleTouchStart}
@@ -117,7 +117,7 @@ const MovieCard = () => {
             handleTouchEnd(e, id);
           }}
         >
-          <CardMedia sx={{ height: 600, backgroundPosition: 'center center' }} image={imageURL} title={title} />
+          <CardMedia sx={{ height: { xs: 500, md: 600, lg: 700 }, backgroundPosition: 'center center' }} image={imageURL} title={title} />
           <CardContent>
             <Typography sx={{ textAlign: 'center' }} variant='h6' component='h3'>
               {title}
