@@ -13,51 +13,82 @@ import {
 } from '@mui/material';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
-import { usePutData } from '../hooks/usePutData';
 import { useContext, useRef, useState } from 'react';
 import DataContext from '../contexts/DataContext';
 
 const MovieCard = () => {
-  const { recommendations } = useContext(DataContext);
+  const { recommendations, putData } = useContext(DataContext);
   const [movies, setMovies] = useState(recommendations);
-  const { putData } = usePutData();
   const cardRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
-  const handleAcceptClick = (id: string) => {
+  function handleAcceptClick(id: string) {
     putData(`/recommendations/${id}/accept`);
 
     if (cardRef.current) {
-      cardRef.current.animate(
+      const animation = cardRef.current.animate(
         [
           { transform: 'translateX(0) rotate(0)', opacity: 1 },
           { transform: 'translateX(-600px) rotate(-90deg)', opacity: 0 },
         ],
         { duration: 500 }
       );
-    }
-  };
 
-  const handleRejectClick = (id: string) => {
+      animation.onfinish = () => {
+        handleAnimationEnd();
+      };
+    }
+  }
+
+  function handleRejectClick(id: string) {
     putData(`/recommendations/${id}/reject`);
 
     if (cardRef.current) {
-      cardRef.current.animate(
+      const animation = cardRef.current.animate(
         [
           { transform: 'translateX(0)', opacity: 1 },
           { transform: 'translateX(600px) rotate(90deg)', opacity: 0 },
         ],
         { duration: 500 }
       );
-    }
-  };
 
-  const handleAnimationEnd = () => {
+      animation.onfinish = () => {
+        handleAnimationEnd();
+      };
+    }
+  }
+
+  function handleAnimationEnd() {
     setMovies((state) => {
       const copy = [...state];
       copy.pop();
       return copy;
     });
-  };
+  }
+
+  function handleTouchStart(e: React.TouchEvent<HTMLDivElement>) {
+    e.stopPropagation();
+    touchStartX.current = e.changedTouches[0].screenX;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent<HTMLDivElement>, id: string) {
+    e.stopPropagation();
+    touchEndX.current = e.changedTouches[0].screenX;
+    checkDirection(id);
+  }
+
+  function checkDirection(id: string) {
+    if (touchEndX.current < touchStartX.current) {
+      // swiped left -> accept
+      handleAcceptClick(id);
+    }
+
+    if (touchEndX.current > touchStartX.current) {
+      // swiped right -> reject
+      handleRejectClick(id);
+    }
+  }
 
   const movie = movies[movies.length - 1];
 
@@ -77,7 +108,15 @@ const MovieCard = () => {
   return (
     <Container data-testid='container-element' sx={{ p: 1 }} maxWidth='sm'>
       <ScopedCssBaseline>
-        <Card sx={{ boxShadow: 3 }} key={id} ref={cardRef} onAnimationEnd={handleAnimationEnd}>
+        <Card
+          sx={{ boxShadow: 3 }}
+          key={id}
+          ref={cardRef}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={(e) => {
+            handleTouchEnd(e, id);
+          }}
+        >
           <CardMedia sx={{ height: '75vh', backgroundPosition: 'center center' }} image={imageURL} title={title} />
           <CardContent>
             <Typography sx={{ textAlign: 'center' }} variant='h6' component='h3'>
